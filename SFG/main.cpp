@@ -51,7 +51,7 @@ public:
 };
 class Garden {
     Box boxes[MAXBOXES];
-    int box[4][4]={NULL};
+    int box[4][4]={0};
     int boxchoice;
     int increment;
 public:
@@ -80,30 +80,14 @@ public:
             cout<<boxes[boxNumber-1]<<endl;
             printBoxMenu();
     }
-    void setLargePlant(int boxNumber) {//fucntion to set all 3x3 plants and boxes aswell as set all 2x2 plants as 1x1 plants are the defualt
+    void setLargePlant(int boxNumber) {//function to set all 3x3 plants and boxes aswell as set all 2x2 plants as 1x1 plants are the defualt
        if(increment==0) {
         cout<<"This is a large plant that will require 9(3x3) total boxes\n any boxes that had plants in them will be replaced "<<endl;
         cout<<"Would you like to continue(y/n): ";
         char c;
         cin>>c;
         if(c=='y') {
-        boxes[boxNumber]=boxes[boxNumber-1];
-        boxes[boxNumber+1]=boxes[boxNumber-1];
-        boxes[boxNumber+3]=boxes[boxNumber-1];
-        boxes[boxNumber+4]=boxes[boxNumber-1];
-        boxes[boxNumber+5]=boxes[boxNumber-1];
-        boxes[boxNumber+7]=boxes[boxNumber-1];
-        boxes[boxNumber+8]=boxes[boxNumber-1];
-        boxes[boxNumber+9]=boxes[boxNumber-1];
-        countDown(boxNumber);
-        countDown((boxNumber+1));
-        countDown((boxNumber+2));
-        countDown((boxNumber+4));
-        countDown((boxNumber+5));
-        countDown((boxNumber+6));
-        countDown((boxNumber+8));
-        countDown((boxNumber+9));
-        countDown((boxNumber+10));
+            for(int i = 0;i<8;i++) {boxes[boxNumber+i]=boxes[boxNumber-1]; countDown(boxNumber+i);}
         increment+=1;
         }
        }
@@ -122,6 +106,7 @@ public:
         cin>>c;
         if(c=='y') {
         boxes[boxNumber]=boxes[boxNumber-1];
+        boxes[boxNumber+1]=boxes[boxNumber-1];
         boxes[boxNumber+3]=boxes[boxNumber-1];
         boxes[boxNumber+4]=boxes[boxNumber-1];
         countDown(boxNumber);
